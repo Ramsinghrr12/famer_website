@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+</head>
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #1491de;
+        text-transform: capitalize;
+        font-size: 30px;
+        font-weight: 50px;
+    }
+    h1{
+        text-align: center;
+    }
+    input[type="text"],input[type="password"],input[type="email"],input[type='number']{
+        width: 40%;
+        padding: 10px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        margin-left: 10px;
+        font-size: 50px;
+    }
+    .main{
+        width: 1200px;
+        margin: 0 auto;
+        padding: 10px;
+        background-color: #fff;
+
+        border-radius: 10px;
+        box-shadow:  0 0 10px rgba(0,0,0,0);
+        background: #3c5077;
+
+    }
+    input[type='submit']:hover{
+        background-color: #45a049;
+    
+    }
+    .main button{
+        height: 40px;
+        width:100px;
+        font-size: 25px;
+        cursor: pointer;font-weight: 500;
+        border-radius: 30px;
+        background-color: #fff;
+
+        
+    }
+    
+
+</style>
+<body><center>
+    <form action="#" method="post">
+      <h1>  ~Hey Welcome to the Registration ~ </h1>
+        <div class="main" id="main">
+            <a href=""></a>
+            <div id="p">
+
+            </div>
+            <div class="uname">
+            <label for="name">Enter your Name: <input type="text" name="uname" id="uname"></label>
+            </div>
+            <div class="phone">
+                <label for="num">Phone number: <input type="number" name="pnum" id="pnum"></label>
+            </div>
+<div class="patta"> 
+    <label for="pa">Enter Passbook Number:<input type="number" name="numb" id="numb"></label>
+
+</div>
+<div class="r3">
+    <label for="password">password :   <input type="password" name="pwd" id="password" class="password"></label>
+</div>
+<div class="r4">
+    <label for="password"> Confirm password :   <input type="password" name="pwd" id="password" class="password"></label>
+</div>
+<div class="email">
+    <label for="email">EMail :   <input type="email" name="mail" class="password"></label>
+</div>
+  <button type="submit" onclick="f1()">signup</button>
+        </div>
+
+    </form>
+    </center>
+
+
+    <script>
+        function f1(){
+            alert("thank you for registration");
+            alert("please remember user name and password:");
+            var c=document.getElementById("main");
+            
+    c.innerHTML='<a href="project.html">click here</a>';
+    c.style.backgroundColor='red';
+
+        
+        document.getElementById("p").innerHTML='Your account was Successfully created <br> click the below link to login';
+        }
+    </script>
+
+</body>
+</html>

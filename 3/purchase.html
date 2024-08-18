@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmers' Pesticide Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+        
+        header {
+            background-color: #28a745;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        #search-bar {
+            width: 80%;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        #product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .product-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            background-color: white;
+        }
+        
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #218838;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: left;
+            border-radius: 10px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        form label {
+            margin-top: 10px;
+        }
+        
+        form input {
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Farmers' Pesticide Booking</h1>
+        <input type="text" id="search-bar" placeholder="Search for products...">
+    </header>
+    <main id="product-list">
+    </main>
+    <!-- <footer>
+        <p>&copy; 2024 Farmers' Pesticide Booking</p>
+    </footer> -->
+
+    <div id="buyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Enter Your Details</h2>
+            <form id="buyForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" required><br><br>
+                <label for="village">Village:</label>
+                <input type="text" id="village" name="village" required><br><br>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required><br><br>
+                <label for="district">District:</label>
+                <input type="text" id="district" name="district" required><br><br>
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required><br><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <footer>
+            <p>&copy; 2024 Farmers' Pesticide Booking</p>
+        </footer>
+    
+    </div>
+
+    <script>
+        const products = [
+    {
+        id: 1,
+        name: " Sempra Bio Fertilizer",
+        image: "m22.png",
+        description: "High quality bio fertilizer",
+        cost:"₹200",
+
+    },
+    {
+        id: 2,
+        name: "Max Yeild",
+        image: "m33.png",
+        description: "Bifenthrin 10% EC",
+        cost:"₹480",
+
+    },
+    {
+        id: 3,
+        name: "Wetcet Insecticide",
+        image: "m44.png",
+        description: "Spinetoram 11.7% SC",
+        cost:"₹343",
+
+    },
+    {
+        id:4,
+        name:"Nano-Ammonium Phosphate",
+        image:"f1.png",
+        description:"12:61:10",
+        cost:"₹340",
+    },
+    {
+        id:5,
+        name:"NPK 19-19-19",
+        image:"f2.jpg",
+        description:"water-solubale mixture",
+        cost:"₹285",
+    },
+    {
+        id:6,
+        name:"Potassuim Nitrate",
+                image:"f3.jpg",
+        description:"13:0:45",
+        cost:"₹1300",        
+    },
+    {
+        id:7,
+        name:"Gromor",
+        image:"f4.png",
+        description:"20-20-0-13",
+        cost:"₹260",
+    },
+    {
+        id:8,
+        name:"Gromor-Ultra",
+        image:"f5.jpeg",
+        description:"10-26-26",
+        cost:"₹285",       
+    },
+    {
+        id:9,
+        name:"Gromor Ammonium phosphate ",
+        image:"f6.jpeg",
+        description:"28-28-0",
+        cost:"₹300",       
+    },
+    {
+        id:10,
+        name:"potash",
+        image:"f7.webp",
+        description:"M .V.P",
+        cost:"₹1700",       
+    },    {
+        id:11,
+        name:"Largo",
+        image:"c11.png",
+        description:"INSECTICIDES",
+        cost:"₹800",       
+    },
+    {
+        id:12,
+        name:"D-One",
+        image:"c233.webp",
+        description:"Systemtic insecticide",
+        cost:"₹1200",       
+    },    {
+        id:13,
+        name:"Super-killer",
+        image:"c255.png",
+        description:"insecticides",
+        cost:"₹1100",       
+    },    {
+        id:14,
+        name:"MY-Core",
+        image:"c266.webp",
+        description:"Bio-Fertilizer",
+        cost:"₹350",       
+    },    {
+        id:15,
+        name:"Chempa",
+        image:"p22.png",
+        description:"Herbicide",
+        cost:"₹245",       
+    },    {
+        id:16,
+        name:"Mortar",
+        image:"p33.png",
+        description:"Insecticide",
+        cost:"₹340",       
+    },
+    {
+        id:17,
+        name:"CalDan",
+        image:"p44.png",
+        description:"Insecticide",
+        cost:"₹390",       
+    },    {
+        id:18,
+        name:"Apply",
+        image:"p55.png",
+        description:"permetrozine",
+        cost:"₹800",       
+    },    {
+        id:19,
+        name:"Media-Super",
+        image:"p66.png",
+        description:"Insecticide",
+        cost:"₹340",       
+    },    {
+        id:20,
+        name:"Targa-Super",
+        image:"g22.webp",
+        description:"Herbicide",
+        cost:"₹450",       
+    },    {
+        id:21,
+        name:"Vita-Vax",
+        image:"g33.png",
+        description:"Fungicide",
+        cost:"₹666",       
+    },
+    {
+        id:22,
+        name:"LUSTREE",
+        image:"g55.png",
+        description:"bio",
+        cost:"₹600",       
+    },    {
+        id:23,
+        name:"MEDIA",
+        image:"g66.png",
+        description:"Insecticides",
+        cost:"₹400",       
+    },    {
+        id:24,
+        name:"Ad-Fyre",
+        image:"o11.png",
+        description:"Insecticide",
+        cost:"₹333",       
+    },    {
+        id:25,
+        name:"Spectrum",
+        image:"o22.png",
+        description:"Fungicide",
+        cost:"₹455",       
+    },    {
+        id:26,
+        name:"Kasu-B",
+        image:"ch55.png",
+        description:"AntiBiotic",
+        cost:"₹489",       
+    },
+
+
+];
+
+const productList = document.getElementById('product-list');
+const buyModal = document.getElementById('buyModal');
+const closeModal = document.querySelector('.close');
+const buyForm = document.getElementById('buyForm');
+
+function renderProducts(products) {
+    productList.innerHTML = '';
+    products.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.classList.add('product-item');
+        productItem.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <h3>${product.cost}</h3>
+            <button onclick="buyNow(${product.id})">Buy Now</button>
+        `;
+        productList.appendChild(productItem);
+    });
+}
+
+function buyNow(productId) {
+    buyModal.style.display = "block";
+    buyForm.onsubmit = (event) => {
+        event.preventDefault();
+        alert('Order placed successfully!');
+        buyModal.style.display = "none";
+        buyForm.reset();
+    }
+}
+
+closeModal.onclick = function() {
+    buyModal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target === buyModal) {
+        buyModal.style.display = "none";
+    }
+}
+
+document.getElementById('search-bar').addEventListener('input', (event) => {
+    const searchQuery = event.target.value.toLowerCase();
+    const filteredProducts = products.filter(product => 
+        product.name.toLowerCase().includes(searchQuery)
+    );
+    renderProducts(filteredProducts);
+});
+
+renderProducts(products);
+
+    </script>
+</body>
+</html>

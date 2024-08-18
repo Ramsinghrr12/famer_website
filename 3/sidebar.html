@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side_Bar</title>
+
+</head>
+<style>
+    body{
+        font-family: 'Roboto',sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f1f1f1;
+        height: 100vh;
+
+    }
+    .btn-trigger{
+        z-index: 5;
+        cursor:pointer;
+        position: absolute;
+        right: -20px;
+        width: 50px;
+        background-color: #333;
+        border: 0;
+        height: 50px;
+        border-radius: 50%;
+        border:1px solid #fff;
+        color: #fff;
+
+        }
+        .btn-trigger:hover{
+            background-color: pink;
+        }
+        nav{
+            left: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            position: fixed;
+            transition: 0.5s all;
+            display: flex;
+            flex-direction: column;
+            align-items: center;   
+        }
+        nav ul{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        nav ul li{
+            padding: 15px;
+            position: relative;
+
+        }
+        nav ul li a{
+            color: #fff;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.5s;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+        nav ul li a:hover{
+            color:pink;
+        }
+        .memu-text{
+            width: 150px;
+        }
+</style>
+<body>
+
+<nav id="sidebar">
+    <button id="trigger-btn" class="btn-trigger"><i class="bi bi-chevron-right"></i> </button>
+    <ul>
+        <li> <a href="#"><i class="bi-house"></i><span class="menu-text">Home</span></a></li>
+        <li><a href="#"><i class="bi-info-circle"></i><span class="menu-text">About</span></a></li>
+        <li><a href="#"><i class="bi-gear"></i><span class="menu-text">Services</span></a></li>
+        <li><a href="#"><i class="bi-telephone"></i><span class="menu-text">Contact</span></a></li>
+
+
+    </ul>
+</nav>
+    <script>
+        const sidebar=document.getElementById('sidebar');
+        const btn=document.getElementById('trigger-btn');
+        const menuText=document.getElementsByClassName('menu-text');
+        let sidebarActive=true;
+        btn.addEventListener('click',()=>{
+            if(sidebarActive){
+                sidebar.style.width='100px';
+                sidebarActive=false;
+                for(let i=0;i<menuText.length;i++){
+                    menuText[i].style.display='none';
+
+                }
+        }
+        else{
+            sidebar.style.width='250px';
+            sidebarActive=true;
+            for(let i=0;i<menuText;i++){
+                menuText[i].style.display='flex';
+
+            }
+        }
+        });
+
+    </script>
+</body>
+</html>
