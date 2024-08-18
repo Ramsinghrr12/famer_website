@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Data Fetcher</title>
+</head>
+<body>
+    <h1>Market Data Fetcher</h1>
+    <div>
+        <label for="commodity">Commodity:</label>
+        <input type="text" id="commodity" placeholder="Enter commodity">
+    </div>
+    <div>
+        <label for="state">State:</label>
+        <input type="text" id="state" placeholder="Enter state">
+    </div>
+    <div>
+        <label for="district">District:</label>
+        <input type="text" id="district" placeholder="Enter district">
+    </div>
+    <div>
+        <label for="mandi">Mandi:</label>
+        <input type="text" id="mandi" placeholder="Enter mandi">
+    </div>
+    <button id="fetchDataBtn">Fetch Data</button>
+    <div id="dataContainer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fetchDataBtn = document.getElementById('fetchDataBtn');
+            const dataContainer = document.getElementById('dataContainer');
+
+            fetchDataBtn.addEventListener('click', async function() {
+                const commodity = document.getElementById('commodity').value;
+                const state = document.getElementById('state').value;
+                const district = document.getElementById('district').value;
+                const mandi = document.getElementById('mandi').value;
+
+                try {
+                    const response = await fetch(`https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd000001e9a0ac8050f0435e4c2d7495d20f829c&format=json&filters[commodity]=${commodity}&filters[state]=${state}&filters[district]=${district}&filters[market]=${mandi}`);
+                    const data = await response.json();
+
+                    if (data && data.records && data.records.length > 0) {
+                        const extractedData = data.records.map(record => `
+                            <div>
+                                <p><strong>State:</strong> ${record.state}</p>
+                                <p><strong>District:</strong> ${record.district}</p>
+                                <p><strong>Market:</strong> ${record.market}</p>
+                                <p><strong>Commodity:</strong> ${record.commodity}</p>
+                                <p><strong>Variety:</strong> ${record.variety}</p>
+                                <p><strong>Grade:</strong> ${record.grade}</p>
+                                <p><strong>Arrival Date:</strong> ${record.arrival_date}</p>
+                                <p><strong>Min Price:</strong> ${record.min_price}</p>
+                                <p><strong>Max Price:</strong> ${record.max_price}</p>
+                                <p><strong>Modal Price:</strong> ${record.modal_price}</p>
+                            </div>
+                        `).join('');
+
+                        dataContainer.innerHTML = extractedData;
+                    } else {
+                        dataContainer.textContent = 'No records found.';
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    dataContainer.textContent = 'Error fetching data. Please try again later.';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

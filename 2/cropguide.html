@@ -1,0 +1,511 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-container {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 200px;
+        }
+
+        input {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #recommendation {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crop Recommendation System</h1>
+        <div class="input-container">
+            <label for="phosphorus">Phosphorus Level:</label>
+            <input type="number" id="phosphorus" min="0" max="100" step="0.01">
+        </div>
+        <div class="input-container">
+            <label for="nitrogen">Nitrogen Level:</label>
+            <input type="number" id="nitrogen" min="0" max="100" step="0.01">
+        </div>
+        <div class="input-container">
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" id="temperature" min="-50" max="50" step="0.1">
+        </div>
+        <div class="input-container">
+            <label for="humidity">Humidity (%):</label>
+            <input type="number" id="humidity" min="0" max="100" step="0.1">
+        </div>
+        <div class="input-container">
+            <label for="phLevel">pH Level:</label>
+            <input type="number" id="phLevel" min="0" max="14" step="0.1">
+        </div>
+        <div class="input-container">
+            <label for="rainfall">Average Rainfall (mm):</label>
+            <input type="number" id="rainfall" min="0" max="1000" step="1">
+        </div>
+        <button onclick="recommend()">Recommend</button>
+        <div id="recommendation"></div>
+    </div>
+
+    <script>
+        function recommend() {
+            var phosphorus = parseFloat(document.getElementById("phosphorus").value);
+            var nitrogen = parseFloat(document.getElementById("nitrogen").value);
+            var temperature = parseFloat(document.getElementById("temperature").value);
+            var humidity = parseFloat(document.getElementById("humidity").value);
+            var phLevel = parseFloat(document.getElementById("phLevel").value);
+            var rainfall = parseFloat(document.getElementById("rainfall").value);
+
+            // Simple recommendation logic
+            var recommendation = "";
+            if (phosphorus > 10 && nitrogen > 15 && temperature > 25 && humidity > 50 && phLevel > 6 && rainfall > 100) {
+                recommendation = "Recommended crops: Rice, Sugarcane";
+            } else if (phosphorus > 3 && nitrogen > 8 && temperature > 20 && humidity > 40 && phLevel > 5.5 && rainfall > 100) {
+                recommendation = "Recommended crops: Wheat, Maize";
+            } else {
+                recommendation = "No suitable crops found based on provided conditions.";
+            }
+
+            document.getElementById("recommendation").innerHTML = recommendation;
+        }
+    </script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>CROP RECOMMENDATION</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image:url('https://environment.co/wp-content/uploads/sites/4/2022/04/farming-methods-.jpg');
+            width:"10px";
+             
+           
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  width: 90%;
+  max-width: 430px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  color: #0C134F; 
+          
+            
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+       
+            
+             input[type="text"] {
+            width: 100%;
+            height : 30px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+            width:90%;
+            height:35px;
+        }
+       
+
+    </style>
+</head>
+<body>
+<center>
+   
+    <form action="/predict" method="post">
+         <font style="font-family:Arial, sans-serif;color:2A184E;"><h1><b>CROP<br>RECOMMENDATION</b></h1></font>
+        <label style="color:#4d0000;" for="nitrogen">Nitrogen in parts per million(ppm):</label>
+        <input type="text" style="border-color:#4d0000;border-radius:15px;" placeholder="Nitrogen" id="nitrogen" name="nitrogen" required><br><br>
+
+        <label style="color:#4d0000;" for="phosphorous">Phosphorous in parts per million(ppm):</label>
+        <input type="text" style="border-color:#000000;border-radius:15px;"placeholder="Phosphorous"  id="phosphorous" name="phosphorous" required><br><br>
+
+        <label style="color:#4d0000;" for="potassium">Potassium in parts per million(ppm):</label>
+        <input type="text" style="border-color:#000000a1;border-radius:15px;" placeholder="Potassium" id="potassium" name="potassium" required><br><br>
+
+        <label style="color:#4d0000;" for="temperature">Temperature in celsius:</label>
+        <input type="text" style="border-color:#000000a1;border-radius:15px;" placeholder="Temperature"id="temperature" name="temperature" required><br><br>
+
+        <label style="color:#4d0000;" for="humidity">Humidity in percentage(%):</label>
+        <input type="text"style="border-color:#000000a1;border-radius:15px;" placeholder="Humidity" id="humidity" name="humidity" required><br><br>
+
+        <label style="color:#4d0000;" for="ph">pH(0-14):</label>
+        <input type="text"style="border-color:#000000a1;border-radius:15px;" placeholder="Ph" id="ph" name="ph" required><br><br>
+
+        <label style="color:#4d0000;" for="rainfall">Rainfall in millimeters(mm):</label>
+        <input type="text" style="border-color:#000000a1;border-radius:15px;" id="rainfall" placeholder="Rainfall" name="rainfall" required><br><br>
+
+        <input style="border-color:blue;border-radius:15px;" type="submit" value="Predict">
+    </form>
+</center>
+</body>
+
+<script>
+
+</script>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>CROP RECOMMENDATION</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image:url('https://environment.co/wp-content/uploads/sites/4/2022/04/farming-methods-.jpg');
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 430px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            color: #0C134F;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #recommendation {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="cropForm">
+        <h1>CROP RECOMMENDATION</h1>
+        <label for="nitrogen">Nitrogen in parts per million(ppm):</label>
+        <input type="text" placeholder="Nitrogen" id="nitrogen" name="nitrogen" required><br><br>
+
+        <label for="phosphorus">Phosphorous in parts per million(ppm):</label>
+        <input type="text" placeholder="Phosphorous" id="phosphorus" name="phosphorus" required><br><br>
+
+        <label for="potassium">Potassium in parts per million(ppm):</label>
+        <input type="text" placeholder="Potassium" id="potassium" name="potassium" required><br><br>
+
+        <label for="temperature">Temperature in celsius:</label>
+        <input type="text" placeholder="Temperature" id="temperature" name="temperature" required><br><br>
+
+        <label for="humidity">Humidity in percentage(%):</label>
+        <input type="text" placeholder="Humidity" id="humidity" name="humidity" required><br><br>
+
+        <label for="phLevel">pH(0-14):</label>
+        <input type="text" placeholder="pH" id="phLevel" name="phLevel" required><br><br>
+
+        <label for="rainfall">Rainfall in millimeters(mm):</label>
+        <input type="text" placeholder="Rainfall" id="rainfall" name="rainfall" required><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    <div id="recommendation"></div>
+
+<script>
+    document.getElementById("cropForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        var phosphorus = parseFloat(document.getElementById("phosphorus").value);
+        var nitrogen = parseFloat(document.getElementById("nitrogen").value);
+        var potassium = parseFloat(document.getElementById("potassium").value);
+        var temperature = parseFloat(document.getElementById("temperature").value);
+        var humidity = parseFloat(document.getElementById("humidity").value);
+        var phLevel = parseFloat(document.getElementById("phLevel").value);
+        var rainfall = parseFloat(document.getElementById("rainfall").value);
+
+        var recommendation = "";
+        if (phosphorus > 25 && phosphorus < 50  && nitrogen > 100 && nitrogen < 150  && potassium > 50 && potassium < 150 && temperature > 25 && humidity > 50 && phLevel > 5 && phLevel < 7 && rainfall > 1000) {
+            recommendation = "Recommended crops: Rice, Sugarcane .style=color:red;";
+        } 
+       else  if (phosphorus > 30 && phosphorus < 60  && nitrogen > 100 && nitrogen < 200  && potassium > 50 && potassium < 150 && temperature > 18 && temperature <32  && humidity > 60 && humidity < 80  && phLevel > 6 && phLevel < 7.5 && rainfall > 500) {
+
+            recommendation = "Recommended crops: Wheat, Maize";
+       }
+       else if(phosphorus > 30 && phosphorus < 60  && nitrogen > 100 && nitrogen < 200  && potassium > 50 && potassium < 100 && temperature > 20 && temperature <32  && humidity > 60 && humidity < 80  && phLevel > 5 && phLevel < 7 && rainfall > 500) {
+        recommendation="Recommended crops:  cotton";
+       }
+       else if(phosphorus > 30 && phosphorus < 60  && nitrogen > 100 && nitrogen < 150  && potassium > 50 && potassium < 100 && temperature > 20 && temperature <32  && humidity > 60 && humidity < 80  && phLevel > 5 && phLevel < 7 && rainfall > 600) {
+        recommendation="Recommended crops: Chilli,Groud NUT";
+       }
+        
+            else {
+            recommendation = "No suitable crops found based on provided conditions.";
+        }
+
+        document.getElementById("recommendation").innerHTML = recommendation;
+    });
+</script>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CROP RECOMMENDATION</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://environment.co/wp-content/uploads/sites/4/2022/04/farming-methods-.jpg');
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 430px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            color: #0C134F;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 12px); /* Adjusted for padding and border */
+            height: 30px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #recommendation {
+            text-align: center;
+            margin-top: 20px;
+            color: red; /* Added for consistency */
+            font-size: 50px;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            height: 100px;
+            width: 400px;
+            border-radius: 5px;
+            border: 2px solid black;
+
+        }
+    </style>
+</head>
+<body>
+
+<form id="cropForm">
+    <h1>CROP RECOMMENDATION</h1>
+    <label for="nitrogen">Nitrogen in parts per million(ppm):</label>
+    <input type="text" placeholder="Nitrogen" id="nitrogen" name="nitrogen" required><br>
+
+    <label for="phosphorus">Phosphorous in parts per million(ppm):</label>
+    <input type="text" placeholder="Phosphorous" id="phosphorus" name="phosphorus" required><br>
+
+    <label for="potassium">Potassium in parts per million(ppm):</label>
+    <input type="text" placeholder="Potassium" id="potassium" name="potassium" required><br>
+
+    <label for="temperature">Temperature in celsius:</label>
+    <input type="text" placeholder="Temperature" id="temperature" name="temperature" required><br>
+
+    <label for="humidity">Humidity in percentage(%):</label>
+    <input type="text" placeholder="Humidity" id="humidity" name="humidity" required><br>
+
+    <label for="phLevel">pH(0-14):</label>
+    <input type="text" placeholder="pH" id="phLevel" name="phLevel" required><br>
+
+    <label for="rainfall">Rainfall in millimeters(mm):</label>
+    <input type="text" placeholder="Rainfall" id="rainfall" name="rainfall" required><br>
+
+    <input type="submit" value="Predict">
+</form>
+
+<div id="recommendation"></div>
+
+<script>
+    document.getElementById("cropForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        var phosphorus = parseFloat(document.getElementById("phosphorus").value);
+        var nitrogen = parseFloat(document.getElementById("nitrogen").value);
+        var potassium = parseFloat(document.getElementById("potassium").value);
+        var temperature = parseFloat(document.getElementById("temperature").value);
+        var humidity = parseFloat(document.getElementById("humidity").value);
+        var phLevel = parseFloat(document.getElementById("phLevel").value);
+        var rainfall = parseFloat(document.getElementById("rainfall").value);
+
+        var recommendation = "";
+        if (phosphorus > 25 && phosphorus < 50 && nitrogen > 100 && nitrogen < 150 && potassium > 50 && potassium < 150 && temperature > 25 && humidity > 50 && phLevel > 5 && phLevel < 7 && rainfall > 1000) {
+            recommendation = "Recommended crops: Rice, Sugarcane";
+        } else if (phosphorus > 30 && phosphorus < 60 && nitrogen > 100 && nitrogen < 200 && potassium > 50 && potassium < 150 && temperature > 18 && temperature < 32 && humidity > 60 && humidity < 80 && phLevel > 6 && phLevel < 7.5 && rainfall > 500) {
+            recommendation = "Recommended crops: Wheat, Maize";
+        } else if (phosphorus > 30 && phosphorus < 60 && nitrogen > 100 && nitrogen < 200 && potassium > 50 && potassium < 100 && temperature > 20 && temperature < 32 && humidity > 60 && humidity < 80 && phLevel > 5 && phLevel < 7 && rainfall > 500) {
+            recommendation = "Recommended crops: Cotton,chilli";
+        } else if (phosphorus > 30 && phosphorus < 60 && nitrogen > 100 && nitrogen < 150 && potassium > 50 && potassium < 100 && temperature > 20 && temperature < 32 && humidity > 60 && humidity < 80 && phLevel > 5 && phLevel < 7 && rainfall > 600) {
+            recommendation = "Recommended crops: Chilli, Groundnut";
+        } else {
+            recommendation = "No suitable crops found based on provided conditions.";
+        }
+
+        document.getElementById("recommendation").innerHTML = recommendation;
+    });
+</script>
+
+</body>
+</html>
